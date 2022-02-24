@@ -6,4 +6,10 @@ function Save-PlugInstallAppItem {
 
     $Destination = "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim"
     iwr -useb $Source | ni $Destination -Force
+
+    return [PsCustomObject]@{
+        Source = $Source;
+        Destination = $Destination;
+        Successs = Test-Path $Destination;
+    }
 }
