@@ -37,14 +37,14 @@ set list
 :    return 0
 :  endif
 :  let l:systemroot = trim(system("echo %systemroot%"))
-:  if stridx(l:current_file_path, l:systemroot) != ""
+:  if stridx(l:current_file_path, l:systemroot) > -1
 :    echom a:function_name . ": The editor working directory is "
        \ . l:current_file_path . "; the function cannot be called
        \ at this location"
 :    return 0
 :  endif
 :  let l:cmd_wd = trim(system("cd"))
-:  if stridx(l:cmd_wd, l:systemroot) > 0
+:  if stridx(l:cmd_wd, l:systemroot) > -1
 :    echom a:function . ": The system working directory is "
        \ . l:cmd_wd . "; the function cannot be called
        \ at this location"
